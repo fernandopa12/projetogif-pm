@@ -1,14 +1,15 @@
 import { Text,ImageBackground,StyleSheet,View } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import{Ionicons} from 'react-native-vector-icons'
+
 import { TextInput } from "react-native-gesture-handler";
 import {useState} from 'react'
 import axios from "axios";
+import Cabecalho from "../Components/Cabecalho";
 
 const TelaResultado = ({route,navigation}) =>{
     const escolha = route.params.escolha;
-    const link = `https://api.giphy.com/v1/${escolha}/search`
+    const link = `http://api.giphy.com/v1/${escolha}/search`
     const[text,setText]=useState("")
 
     
@@ -34,29 +35,12 @@ const TelaResultado = ({route,navigation}) =>{
             style={estilo.container}
         >
             <SafeAreaView>
-                <View style={estilo.cabecalho}>
-                    <Ionicons 
-                        name="chevron-back" 
-                        size={40} 
-                        color='white'
-                        onPress={()=>navigation.goBack()}
-                    />
-                    <TextInput 
-                        placeholder="Pesquisar" 
-                        style={estilo.input}
-                        autoCapitalize="none"
-                        autoCorrect={false}
-                        value={text}
-                        onChangeText={(value)=>setText(value)}
-                        
-                    />
-                    <Ionicons 
-                        name='search' 
-                        size={40} 
-                        color='white'
-                        onPress={()=>solicitar(text)}
-                    />
-                </View>
+                <Cabecalho 
+                    navigation={navigation}
+                    text={text}
+                    setText={setText}
+                    solicitar={solicitar}
+                />
             </SafeAreaView>
         </ImageBackground>
     )
