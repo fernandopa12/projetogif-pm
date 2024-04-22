@@ -18,6 +18,7 @@ const Cabecalho = ({navigation,text,setText,solicitar})=>{
                         autoCorrect={false}
                         value={text}
                         onChangeText={(value)=>setText(value)}
+                        onSubmitEditing={()=>solicitar(text)}
                         
                     />
                     <Ionicons 

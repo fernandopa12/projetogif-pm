@@ -21,7 +21,9 @@ const App = () =>{
         <Stack.Screen name='TelaResultado' component={TelaResultado}
           options={{headerShown:false}}
         />
-        <Stack.Screen name='TelaDetalhes' component={TelaDetalhes}/>
+        <Stack.Screen name='TelaDetalhes' component={TelaDetalhes}
+          options={{headerShown:false}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   )
