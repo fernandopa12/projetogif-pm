@@ -48,12 +48,13 @@ const TelaResultado = ({route,navigation}) =>{
                 />
 
                 <FlatList 
+                    style={{margin:5}}
                     data={data}
                     numColumns={2}
                     renderItem={({item})=>{
                         return(
                             <TouchableOpacity
-                                onPress={()=>navigation.navigate('TelaDetalhes')}
+                                onPress={()=>navigation.navigate('TelaDetalhes',{item:item})}
                             >
                                 <Image 
                                     source={{uri:item.images.preview_gif.url}}
@@ -85,7 +86,9 @@ const estilo = StyleSheet.create({
     },
     image:{
         width:IMAGE_WIDTH/2,
-        height:IMAGE_WIDTH/2
+        height:IMAGE_WIDTH/2,
+        margin:5
+        
     }
 })
 export default TelaResultado
