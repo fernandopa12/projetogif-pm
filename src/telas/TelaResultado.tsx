@@ -5,6 +5,7 @@ import {useState} from 'react'
 import axios from "axios";
 import Cabecalho from "../Components/Cabecalho";
 import API_KEY from "../API_KEY";
+import TextoInfo from "../Components/TextoInfo";
 
 const{width}=Dimensions.get('window')
 const IMAGE_WIDTH = width
@@ -15,6 +16,7 @@ const TelaResultado = ({route,navigation}) =>{
     const link = `http://api.giphy.com/v1/${escolha}/search`
     const[text,setText]=useState("")
     const[data,setData]=useState([])
+    const[mostrarMensagem,setMostrarMensagem]=useState(true)
 
     
     const solicitar = async (text) =>{
@@ -28,6 +30,7 @@ const TelaResultado = ({route,navigation}) =>{
                 }
             })
             //console.log(resultados.data.data)
+            setMostrarMensagem(false)
             setData(resultados.data.data)
         }catch(err){
             console.log(err)
@@ -50,6 +53,9 @@ const TelaResultado = ({route,navigation}) =>{
                 <FlatList 
                     style={{margin:5}}
                     data={data}
+                    ListHeaderComponent={
+                        <TextoInfo mostrarMsg={mostrarMensagem}/>
+                    }
                     numColumns={2}
                     renderItem={({item})=>{
                         return(
